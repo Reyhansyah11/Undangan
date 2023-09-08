@@ -5,10 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan</title>
 
+    <link rel="shortcut icon" href="src/img/faicon.jpg" type="image/x-icon">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@100;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Countdown -->
+    <link rel="stylesheet" href="src/css/simplyCountdown.theme.default.css"/>
+    <script src="src/js/simplyCountdown.min.js"></script>
+
     <link href="dist/output.css" rel="stylesheet">
     <!-- <link href="src/css/build.css" rel="stylesheet"> -->
 </head>
-<body>
-    <h1 class="w-full h-screen flex justify-center items-center text-pink-500">Hello World</h1>
+<body class="text-xl font-workSans">
+    <section id="hero" class="w-full h-full min-h-screen p-3 mx-auto text-center flex justify-center items-center text-pinkPrimary bg-center" style="background-image: url('src/img/faicon.jpg');">
+        <div>
+            <h4 class="text-lg sm:text-xl lg:text-3xl drop-shadow-md">Kepada Bapak/Ibu/Saudara/i, </h4>
+            <h1 class="my-3 font-sacramento text-5xl sm:text-7xl lg:text-8xl drop-shadow-md">Lorem & Ipsum</h1>
+            <p class="mb-3 text-base sm:text-lg lg:text-2xl drop-shadow-md">Akan melangsungkan resepsi pernikahan dalam:</p>
+            <div class="simply-countdown" id="simply-countdown"></div>
+            <a href="#undangan" class="inline-block mt-10 px-3 py-1.5 rounded-lg shadow-sm shadow-bgPrimary bg-pinkPrimary text-white hover:text-pinkPrimary hover:bg-white transition">Lihat Undangan</a>
+        </div>
+    </section>
+
+
+    <script>
+        simplyCountdown('.simply-countdown', {
+            year: 2024, // required
+            month: 1, // required
+            day: 1, // required
+            hours: 8, // Default is 0 [0-23] integer
+            words: { //words displayed into the countdown
+                days: { singular: 'hari', plural: 'hari' },
+                hours: { singular: 'jam', plural: 'jam' },
+                minutes: { singular: 'menit', plural: 'menit' },
+                seconds: { singular: 'detik', plural: 'detik' }
+            },
+        });
+    </script>
 </body>
 </html>
