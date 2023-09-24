@@ -16,9 +16,13 @@ module.exports = {
                 // tablet: {"max": "768px"},
                 // mobile: {"max": "576px"},
             },
+            animation: {
+                'spin-slow': 'spin 4s linear infinite',
+            }
         },
     },
     plugins: [
         require("daisyui"),
+        require('tailwind-scrollbar')({ nocompatible: true }),
     ],
 };

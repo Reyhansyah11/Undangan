@@ -18,6 +18,10 @@
     .arrow-story-inverted-lg {
         @apply before:inline-block before:absolute before:border-t-transparent before:border-t-0 before:border-l-[#ccc] before:border-l-0 before:border-r-[#ccc] before:border-r-0 before:border-b-transparent before:border-b-0 before:top-16 before:-right-4 after:absolute after:inline-block after:border-t-transparent after:border-t-0 after:border-l-white after:border-l-0 after:border-r-white after:border-r-0 after:border-b-transparent after:border-b-0 after:top-[63px] after:-right-0
     }
+
+    .scrollbarStyle {
+        @apply scrollbar-thin scrollbar-thumb-pinkPrimary/60 scrollbar-track-pinkPrimary/20 scrollbar-thumb-rounded-full hover:scrollbar-thumb-pinkPrimary/80 transition
+    }
 }
 
 @layer utilities {
