@@ -1,295 +1,563 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light" class="scroll-smooth">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Undangan Pernikahan</title>
 
-    <link rel="shortcut icon" href="src/img/primary-background.jpg" type="image/x-icon">
+    <link
+      rel="shortcut icon"
+      href="src/img/primary-background.jpg"
+      type="image/x-icon"
+    />
 
     <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@100;300;400;600;700&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sacramento&family=Work+Sans:wght@100;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Countdown -->
     <link rel="stylesheet" href="src/css/simplyCountdown.theme.default.css" />
     <script src="src/js/simplyCountdown.min.js"></script>
 
     <!-- Remix Icon -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
 
     <!-- LeafletJS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
 
     <!-- <link href="dist/output.css" rel="stylesheet"> -->
-    <link href="src/css/build.css" rel="stylesheet">
-</head>
+    <link href="src/css/build.css" rel="stylesheet" />
+  </head>
 
-<body class="font-workSans scrollbarStyle">
+  <body class="font-workSans scrollbarStyle">
     <!-- Start Hero -->
-    <section id="hero" class="w-full h-full min-h-screen p-3 mx-auto text-center flex justify-center items-center text-pinkPrimary bg-center bg-auto" style="background-image: url('src/img/primary-background.jpg');">
-        <div>
-            <!-- <h4 class="text-lg sm:text-xl lg:text-3xl drop-shadow-md">Kepada Bapak/Ibu/Saudara/i, </h4> -->
-            <h4 class="text-lg sm:text-xl lg:text-3xl drop-shadow-md">Kepada <span></span> </h4>
-            <h1 class="my-3 font-sacramento text-5xl sm:text-7xl lg:text-8xl drop-shadow-md">Lorem & Ipsum</h1>
-            <p class="mb-3 text-base sm:text-lg lg:text-2xl drop-shadow-md">Akan melangsungkan resepsi pernikahan dalam:</p>
-            <div class="simply-countdown" id="simply-countdown"></div>
-            <a href="#home" class="mt-10 inline-block px-3 py-1.5 rounded-lg shadow-sm shadow-bgPrimary bg-pinkPrimary text-base sm:text-lg lg:text-xl text-white hover:text-pinkPrimary hover:bg-white duration-200 transition" onclick="enableScroll()">Lihat Undangan</a>
-        </div>
+    <section
+      id="hero"
+      class="w-full h-full min-h-screen p-3 mx-auto text-center flex justify-center items-center text-pinkPrimary bg-center bg-auto"
+      style="background-image: url('src/img/primary-background.jpg')"
+    >
+      <div>
+        <!-- <h4 class="text-lg sm:text-xl lg:text-3xl drop-shadow-md">Kepada Bapak/Ibu/Saudara/i, </h4> -->
+        <h4 class="text-lg sm:text-xl lg:text-3xl drop-shadow-md">
+          Kepada <span></span>
+        </h4>
+        <h1
+          class="my-3 font-sacramento text-5xl sm:text-7xl lg:text-8xl drop-shadow-md"
+        >
+          Lorem & Ipsum
+        </h1>
+        <p class="mb-3 text-base sm:text-lg lg:text-2xl drop-shadow-md">
+          Akan melangsungkan resepsi pernikahan dalam:
+        </p>
+        <div class="simply-countdown" id="simply-countdown"></div>
+        <a
+          href="#home"
+          class="mt-10 inline-block px-3 py-1.5 rounded-lg shadow-sm shadow-bgPrimary bg-pinkPrimary text-base sm:text-lg lg:text-xl text-white hover:text-pinkPrimary hover:bg-white duration-200 transition"
+          onclick="enableScroll()"
+          >Lihat Undangan</a
+        >
+      </div>
     </section>
     <!-- End Hero -->
 
     <!-- Start Navbar -->
-    <div class="navbar bg-white/30 backdrop-blur-sm sticky top-0 lg:px-[5%] xl:px-[10%] py-4 z-50">
-        <div class="navbar-start">
-            <button class="btn btn-ghost normal-case text-4xl lg:text-5xl font-sacramento font-semibold hover:bg-transparent">Wedding</button>
-        </div>
-        <div class="navbar-end flex lg:hidden">
-            <div class="dropdown dropdown-left">
-                <!-- Mobile -->
-                <label tabindex="0" onclick="my_modal_2.showModal()" class="btn btn-ghost block lg:hidden" id="hamburger">
-                    <span class="hamburger-line origin-top-left transition duration-300 ease-in-out"></span>
-                    <span class="hamburger-line transition duration-300 ease-in-out"></span>
-                    <span class="hamburger-line origin-bottom-left transition duration-300 ease-in-out"></span>
-                </label>
-                <dialog id="my_modal_2" class="modal modal-middle">
-                <div class="modal-box">
-                    <form method="dialog">
-                        <button id="hamburger2" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    </form>
-                    <ul tabindex="0" class="flex justify-center items-center flex-col p-3 gap-y-3 text-base sm:text-lg">
-                        <li><a href="#home" class="link link-hover">Home</a></li>
-                        <li><a href="#info" class="link link-hover">Info</a></li>
-                        <li><a href="#story" class="link link-hover">Story</a></li>
-                        <li><a href="#gallery" class="link link-hover">Gallery</a></li>
-                        <li><a href="#rsvp" class="link link-hover">RSVP</a></li>
-                        <li><a href="#gifts" class="link link-hover">Gifts</a></li>
-                    </ul>
-                </div>
-                <form method="dialog" class="modal-backdrop">
-                    <button id="hamburger3">close</button>
-                </form>
-                </dialog>
+    <div
+      class="navbar bg-white/30 backdrop-blur-sm sticky top-0 lg:px-[5%] xl:px-[10%] py-4 z-50"
+    >
+      <div class="navbar-start">
+        <button
+          class="btn btn-ghost normal-case text-4xl lg:text-5xl font-sacramento font-semibold hover:bg-transparent"
+        >
+          Wedding
+        </button>
+      </div>
+      <div class="navbar-end flex lg:hidden">
+        <div class="dropdown dropdown-left">
+          <!-- Mobile -->
+          <label
+            tabindex="0"
+            onclick="my_modal_2.showModal()"
+            class="btn btn-ghost block lg:hidden"
+            id="hamburger"
+          >
+            <span
+              class="hamburger-line origin-top-left transition duration-300 ease-in-out"
+            ></span>
+            <span
+              class="hamburger-line transition duration-300 ease-in-out"
+            ></span>
+            <span
+              class="hamburger-line origin-bottom-left transition duration-300 ease-in-out"
+            ></span>
+          </label>
+          <dialog id="my_modal_2" class="modal modal-middle">
+            <div class="modal-box">
+              <form method="dialog">
+                <button
+                  id="hamburger2"
+                  class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+                >
+                  ✕
+                </button>
+              </form>
+              <ul
+                tabindex="0"
+                class="flex justify-center items-center flex-col p-3 gap-y-3 text-base sm:text-lg"
+              >
+                <li><a href="#home" class="link link-hover">Home</a></li>
+                <li><a href="#info" class="link link-hover">Info</a></li>
+                <li><a href="#story" class="link link-hover">Story</a></li>
+                <li><a href="#gallery" class="link link-hover">Gallery</a></li>
+                <!-- <li><a href="#rsvp" class="link link-hover">RSVP</a></li>
+                <li><a href="#gifts" class="link link-hover">Gifts</a></li> -->
+              </ul>
             </div>
+            <form method="dialog" class="modal-backdrop">
+              <button id="hamburger3">close</button>
+            </form>
+          </dialog>
         </div>
-        <!-- Desktop -->
-        <div class="lg:navbar-center xl:navbar-end hidden lg:flex">
-            <ul class="menu menu-horizontal px-1 uppercase text-lg">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#info">Info</a></li>
-                <li><a href="#story">Story</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#gifts">Gifts</a></li>
-            </ul>
-        </div>
+      </div>
+      <!-- Desktop -->
+      <div class="lg:navbar-center xl:navbar-end hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 uppercase text-lg">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#info">Info</a></li>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
+          <li><a href="#gifts">Gifts</a></li>
+        </ul>
+      </div>
     </div>
     <!-- End Navbar -->
 
     <!-- Start Home -->
-    <section id="home" class="bg-cover min-h-screen -mt-24 pt-60 pb-20" style="background-image: url(src/img/secondary-background.png);">
-        <div class="container px-2 md:px-3 mx-auto">
-            <div class="grid justify-center">
-                <div class="grid-cols-8 md:grid-cols-12 text-center">
-                    <h2 class="text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold">Acara Pernikahan</h2>
-                    <h3 class="text-[#444] text-base sm:text-lg md:text-xl lg:text-2xl mb-4">Diselenggarakan pada 01 Januari 2024 di Sidoarjo, Jawa Timur.</h3>
-                    <p class="text-sm sm:text-base md:text-lg text-[#666]">Oleh karena itu, dengan segala hormat, kami bermaksud untuk mengundang Bapak/Ibu/Saudara/i, untuk hadir pada acara pernikahan kami.</p>
-                </div>
-            </div>
-
-            <div class="w-full items-center flex flex-col lg:flex-row lg:justify-between mt-24 gap-8">
-                <div class="flex items-center">
-                    <div class="flex items-center">
-                        <div class="mr-3 sm:mr-5 xl:mr-10 text-right">
-                            <h3 class="font-sacramento text-5xl text-pinkPrimary mb-1 md:mb-2">Lorem</h3>
-                            <p class="text-sm sm:text-base md:text-lg mb-2 md:mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ab quibusdam minima in asperiores maiores.</p>
-                            <p class="text-sm sm:text-base md:text-lg">Putra dari Bapak Dolor <br> dan <br> Ibu Sit</p>
-                        </div>
-                        <div>
-                            <img src="src/img/pp-1.jpg" alt="Mempelai Laki-laki" class="rounded-full w-full">
-                        </div>
-                    </div>
-                </div>
-                <div class="hidden lg:flex items-center justify-center w-10 h-10 xl:w-12 xl:h-12 absolute left-1/2 -translate-x-1/2 bg-white rounded-full border shadow-sm shadow-black/50">
-                    <i class="ri-heart-fill text-xl text-pinkPrimary m-auto"></i>
-                </div>
-                <div class="flex items-center">
-                    <div class="flex items-center">
-                        <div>
-                            <img src="src/img/pp-2.jpg" alt="Mempelai Perempuan" class="rounded-full w-full">
-                        </div>
-                        <div class="ml-3 sm:ml-5 xl:ml-10 text-left">
-                            <h3 class="font-sacramento text-5xl text-pinkPrimary mb-1 md:mb-2">Ipsum</h3>
-                            <p class="text-sm sm:text-base md:text-lg mb-2 md:mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi ab quibusdam minima in asperiores maiores.</p>
-                            <p class="text-sm sm:text-base md:text-lg">Putra dari Bapak Amet <br> dan <br> Ibu Consectetur</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section
+      id="home"
+      class="bg-cover min-h-screen -mt-24 pt-60 pb-20"
+      style="background-image: url(src/img/secondary-background.png)"
+    >
+      <div class="container px-2 md:px-3 mx-auto">
+        <div class="grid justify-center">
+          <div class="grid-cols-8 md:grid-cols-12 text-center">
+            <h2
+              class="text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold"
+            >
+              Acara Pernikahan
+            </h2>
+            <h3
+              class="text-[#444] text-base sm:text-lg md:text-xl lg:text-2xl mb-4"
+            >
+              Diselenggarakan pada 01 Januari 2024 di Sidoarjo, Jawa Timur.
+            </h3>
+            <p class="text-sm sm:text-base md:text-lg text-[#666]">
+              Oleh karena itu, dengan segala hormat, kami bermaksud untuk
+              mengundang Bapak/Ibu/Saudara/i, untuk hadir pada acara pernikahan
+              kami.
+            </p>
+          </div>
         </div>
+
+        <div
+          class="w-full items-center flex flex-col lg:flex-row lg:justify-between mt-24 gap-8"
+        >
+          <div class="flex items-center">
+            <div class="flex items-center">
+              <div class="mr-3 sm:mr-5 xl:mr-10 text-right">
+                <h3
+                  class="font-sacramento text-5xl text-pinkPrimary mb-1 md:mb-2"
+                >
+                  Lorem
+                </h3>
+                <p class="text-sm sm:text-base md:text-lg mb-2 md:mb-4">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Commodi ab quibusdam minima in asperiores maiores.
+                </p>
+                <p class="text-sm sm:text-base md:text-lg">
+                  Putra dari Bapak Dolor <br />
+                  dan <br />
+                  Ibu Sit
+                </p>
+              </div>
+              <div>
+                <img
+                  src="src/img/pp-1.jpg"
+                  alt="Mempelai Laki-laki"
+                  class="rounded-full w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="hidden lg:flex items-center justify-center w-10 h-10 xl:w-12 xl:h-12 absolute left-1/2 -translate-x-1/2 bg-white rounded-full border shadow-sm shadow-black/50"
+          >
+            <i class="ri-heart-fill text-xl text-pinkPrimary m-auto"></i>
+          </div>
+          <div class="flex items-center">
+            <div class="flex items-center">
+              <div>
+                <img
+                  src="src/img/pp-2.jpg"
+                  alt="Mempelai Perempuan"
+                  class="rounded-full w-full"
+                />
+              </div>
+              <div class="ml-3 sm:ml-5 xl:ml-10 text-left">
+                <h3
+                  class="font-sacramento text-5xl text-pinkPrimary mb-1 md:mb-2"
+                >
+                  Ipsum
+                </h3>
+                <p class="text-sm sm:text-base md:text-lg mb-2 md:mb-4">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Commodi ab quibusdam minima in asperiores maiores.
+                </p>
+                <p class="text-sm sm:text-base md:text-lg">
+                  Putra dari Bapak Amet <br />
+                  dan <br />
+                  Ibu Consectetur
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- End Home -->
 
     <!-- Start Info -->
     <section id="info" class="bg-bgPrimary text-white pt-40 pb-32">
-        <div class="container mx-auto">
-            <div class="text-center px-2 sm:px-10 xl:px-80">
-                <h2 class="mb-10 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold">Informasi Acara</h2>
-                <p class="text-sm sm:text-base md:text-lg">Alamat: GOR Soerokromo, Gedung Serbaguna. <br> Semambung, Kec. Gedangan, Kabupaten Sidoarjo, Jawa Timur 61254</p>
-                
-                <!-- Menggunakan LeafletJS -->
-                <!-- <div id="map" class="w-full h-[450px] my-5 rounded-2xl"></div> -->
-                <!-- Menggunakan Google Maps -->
-                <iframe class="w-full h-[450px] my-5 rounded-2xl" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1978.3967497182664!2d112.7413162!3d-7.3770262!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e5ae164b4a3f%3A0x51a88017819d9448!2sGOR%20Soerokromo!5e0!3m2!1sid!2sid!4v1695563118472!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="container mx-auto">
+        <div class="text-center px-2 sm:px-10 xl:px-80">
+          <h2
+            class="mb-10 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold"
+          >
+            Informasi Acara
+          </h2>
+          <p class="text-sm sm:text-base md:text-lg">
+            Alamat: GOR Soerokromo, Gedung Serbaguna. <br />
+            Semambung, Kec. Gedangan, Kabupaten Sidoarjo, Jawa Timur 61254
+          </p>
 
-                <a href="https://maps.app.goo.gl/baG9kizXKnqcp2x7A" target="_blank" class="btn btn-sm normal-case mb-5 hover:border-pinkPrimary hover:text-white hover:bg-pinkPrimary">Klik untuk membuka peta</a>
-                <p class="text-sm sm:text-base md:text-lg font-light">Diharapkan tidak salah alamat dan tanggal. Manakala tiba-tiba ditujuan namun tidak ada tanda-tanda sedang dilangsungkan pernikahan, boleh jadi Anda salah jadwal atau tempat.</p>
-            </div>
+          <!-- Menggunakan LeafletJS -->
+          <!-- <div id="map" class="w-full h-[450px] my-5 rounded-2xl"></div> -->
+          <!-- Menggunakan Google Maps -->
+          <iframe
+            class="w-full h-[450px] my-5 rounded-2xl"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1978.3967497182664!2d112.7413162!3d-7.3770262!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7e5ae164b4a3f%3A0x51a88017819d9448!2sGOR%20Soerokromo!5e0!3m2!1sid!2sid!4v1695563118472!5m2!1sid!2sid"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
 
-            <div class="mt-5 sm:mt-8 flex flex-wrap lg:flex-nowrap justify-center gap-x-6 gap-y-6 sm:gap-y-10 lg:gap-y-0 px-5">
-                <div class="block rounded-lg bg-white/20 text-slate-50 text-center border border-white shadow-sm max-w-md md:max-w-lg xl:max-w-xl">
-                    <div class="border-b-2 border-slate-50/40 px-6 py-3 uppercase tracking-widest">
-                        Akad Nikah
-                    </div>
-                    <div class="p-6 text-base">
-                        <div class="grid grid-cols-12 justify-center">
-                            <div class="col-span-6">
-                                <i class="ri-time-line text-xl block"></i>
-                                <span>08.00 - 10.00</span>
-                            </div>
-                            <div class="col-span-6">
-                                <i class="ri-calendar-todo-fill text-xl block"></i>
-                                <span>Senin, 01 Januari 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-t-2 border-slate-50/40 px-6 py-3 text-sm font-light">
-                        Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyukan seluruh prosesi.
-                    </div>
-                </div>
-
-                <div class="block rounded-lg bg-white/20 text-slate-50 text-center border border-white shadow-sm max-w-md md:max-w-lg xl:max-w-xl">
-                    <div class="border-b-2 border-slate-50/40 px-6 py-3 uppercase tracking-widest">
-                        Resepsi
-                    </div>
-                    <div class="p-6 text-base">
-                        <div class="grid grid-cols-12 justify-center">
-                            <div class="col-span-6">
-                                <i class="ri-time-line text-xl block"></i>
-                                <span>11.00 - selesai</span>
-                            </div>
-                            <div class="col-span-6">
-                                <i class="ri-calendar-todo-fill text-xl block"></i>
-                                <span>Senin, 01 Januari 2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-t-2 border-slate-50/40 px-6 py-3 text-sm font-light">
-                        Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan kekhusyukan seluruh prosesi.
-                    </div>
-                </div>
-            </div>
+          <a
+            href="https://maps.app.goo.gl/baG9kizXKnqcp2x7A"
+            target="_blank"
+            class="btn btn-sm normal-case mb-5 hover:border-pinkPrimary hover:text-white hover:bg-pinkPrimary"
+            >Klik untuk membuka peta</a
+          >
+          <p class="text-sm sm:text-base md:text-lg font-light">
+            Diharapkan tidak salah alamat dan tanggal. Manakala tiba-tiba
+            ditujuan namun tidak ada tanda-tanda sedang dilangsungkan
+            pernikahan, boleh jadi Anda salah jadwal atau tempat.
+          </p>
         </div>
+
+        <div
+          class="mt-5 sm:mt-8 flex flex-wrap lg:flex-nowrap justify-center gap-x-6 gap-y-6 sm:gap-y-10 lg:gap-y-0 px-5"
+        >
+          <div
+            class="block rounded-lg bg-white/20 text-slate-50 text-center border border-white shadow-sm max-w-md md:max-w-lg xl:max-w-xl"
+          >
+            <div
+              class="border-b-2 border-slate-50/40 px-6 py-3 uppercase tracking-widest"
+            >
+              Akad Nikah
+            </div>
+            <div class="p-6 text-base">
+              <div class="grid grid-cols-12 justify-center">
+                <div class="col-span-6">
+                  <i class="ri-time-line text-xl block"></i>
+                  <span>08.00 - 10.00</span>
+                </div>
+                <div class="col-span-6">
+                  <i class="ri-calendar-todo-fill text-xl block"></i>
+                  <span>Senin, 01 Januari 2024</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="border-t-2 border-slate-50/40 px-6 py-3 text-sm font-light"
+            >
+              Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan
+              kekhusyukan seluruh prosesi.
+            </div>
+          </div>
+
+          <div
+            class="block rounded-lg bg-white/20 text-slate-50 text-center border border-white shadow-sm max-w-md md:max-w-lg xl:max-w-xl"
+          >
+            <div
+              class="border-b-2 border-slate-50/40 px-6 py-3 uppercase tracking-widest"
+            >
+              Resepsi
+            </div>
+            <div class="p-6 text-base">
+              <div class="grid grid-cols-12 justify-center">
+                <div class="col-span-6">
+                  <i class="ri-time-line text-xl block"></i>
+                  <span>11.00 - selesai</span>
+                </div>
+                <div class="col-span-6">
+                  <i class="ri-calendar-todo-fill text-xl block"></i>
+                  <span>Senin, 01 Januari 2024</span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="border-t-2 border-slate-50/40 px-6 py-3 text-sm font-light"
+            >
+              Saat acara akad diharapkan untuk kondusif menjaga kekhidmatan dan
+              kekhusyukan seluruh prosesi.
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- End Info -->
 
     <!-- Start Story -->
     <section id="story" class="pt-40 pb-32">
-        <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
-            <span class="uppercase text-[#666] text-sm tracking-[1px] mb-6 block">Bagaimana Cinta Kami Bersemi</span>
-            <h2 class="mb-4 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold">Cerita Kami</h2>
-            <p class="text-base font-light">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam blanditiis molestias porro dicta adipisci officiis praesentium fugit illum? Repellendus, iure!</p>
-        </div>
+      <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
+        <span class="uppercase text-[#666] text-sm tracking-[1px] mb-6 block"
+          >Bagaimana Cinta Kami Bersemi</span
+        >
+        <h2
+          class="mb-4 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold"
+        >
+          Cerita Kami
+        </h2>
+        <p class="text-base font-light">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam
+          blanditiis molestias porro dicta adipisci officiis praesentium fugit
+          illum? Repellendus, iure!
+        </p>
+      </div>
 
-        <div class="flex justify-center lg:px-5 xl:px-0">
-            <ul class="py-6 px-0 mt-4 relative before:top-0 before:bottom-0 before:absolute before:w-[1px] before:bg-[#ccc] before:left-1/2 sm:before:left-16 md:before:left-20 lg:before:left-1/2">
-                <!-- Kiri -->
-                <li class="mb-20 sm:mb-10 relative before:table after:table after:clear-both">
-                    <div class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted lg:arrow-story-inverted-lg" style="background-image: url('src/img/story/alena-aenami-walls1k.jpg');"></div>
-                    <div class="w-[90%] sm:w-[70%] lg:w-[40%] xl:w-[50%] mx-auto float-none sm:float-right lg:float-left border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white lg:arrow-story sm:right-4 md:right-7 lg:right-auto xl:right-28 text-center sm:text-left">
-                        <div class="mb-2">
-                            <h3 class="font-bold text-base sm:text-xl tracking-widest">Pertama Kali Bertemu</h3>
-                            <span class="font-semibold text-sm sm:text-base text-[#666]">1 Januari 2011</span>
-                        </div>
-                        <div>
-                            <p class="font-light text-[#444] text-sm sm:text-base">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto delectus quam quae ullam inventore dolorum?</p>
-                        </div>
-                    </div>
-                </li>
+      <div class="flex justify-center lg:px-5 xl:px-0">
+        <ul
+          class="py-6 px-0 mt-4 relative before:top-0 before:bottom-0 before:absolute before:w-[1px] before:bg-[#ccc] before:left-1/2 sm:before:left-16 md:before:left-20 lg:before:left-1/2"
+        >
+          <!-- Kiri -->
+          <li
+            class="mb-20 sm:mb-10 relative before:table after:table after:clear-both"
+          >
+            <div
+              class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted lg:arrow-story-inverted-lg"
+              style="
+                background-image: url('src/img/story/alena-aenami-walls1k.jpg');
+              "
+            ></div>
+            <div
+              class="w-[90%] sm:w-[70%] lg:w-[40%] bg-black mx-auto float-none sm:float-right lg:float-left border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative lg:arrow-story sm:right-4 md:right-7 lg:right-auto text-center sm:text-left"
+            >
+              <div class="mb-2">
+                <h3 class="font-bold text-base sm:text-xl tracking-widest">
+                  Pertama Kali Bertemu
+                </h3>
+                <span class="font-semibold text-sm sm:text-base text-[#666]"
+                  >1 Januari 2011</span
+                >
+              </div>
+              <div>
+                <p class="font-light text-[#444] text-[8px] sm:text-base">
+                  LTidak ada yang kebetulan di dunia ini, semua sudah tersusun
+                  rapih , oleh sang maha kuasa, kita tidak bisa memilih kepada
+                  siapa kita akan jatuh cinta, kami sudah saling mengenal sejak
+                  2015-2017 tepat nya saat kami sedang menempuh pendidikan di
+                  SMA yang sama, tetapi memang tidak pernah ngobrol sama
+                  sekali,hanya mengenal saja tau nama saja dan orang mana,karna
+                  memang jurusan kitapun saat itu berbeda IPA-IPS
+                </p>
+              </div>
+            </div>
+          </li>
 
-                <!-- Kanan -->
-                <li class="mb-10 relative before:table after:table after:clear-both">
-                    <div class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted" style="background-image: url('src/img/story/anastasia-ermakova-train-station1.jpg');"></div>
-                    <div class="w-[90%] sm:w-[70%] lg:w-[40%] xl:w-[50%] mx-auto float-none sm:float-right border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white sm:right-4 md:right-7 lg:right-auto xl:-right-28 text-center sm:text-left">
-                        <div class="mb-2">
-                            <h3 class="font-bold text-base sm:text-xl tracking-widest">Mulai Serius</h3>
-                            <span class="font-semibold text-sm sm:text-base text-[#666]">2 Februari 2012</span>
-                        </div>
-                        <div>
-                            <p class="font-light text-[#444] text-sm sm:text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vero fuga nemo odit repellat, pariatur illum quas sequi. Quas, maiores.</p>
-                        </div>
-                    </div>
-                </li>
+          <!-- Kanan -->
+          <li class="mb-10 relative before:table after:table after:clear-both">
+            <div
+              class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted"
+              style="
+                background-image: url('src/img/story/anastasia-ermakova-train-station1.jpg');
+              "
+            ></div>
+            <div
+              class="w-[90%] sm:w-[70%] lg:w-[40%] mx-auto float-none sm:float-right border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white sm:right-4 md:right-7 lg:right-auto text-center sm:text-left"
+            >
+              <div class="mb-2">
+                <h3 class="font-bold text-base sm:text-xl tracking-widest">
+                  Pendekatan
+                </h3>
+                <span class="font-semibold text-sm sm:text-base text-[#666]"
+                  >2 Februari 2012</span
+                >
+              </div>
+              <div>
+                <p class="font-light text-[#444] text-sm sm:text-base">
+                  Tidak ada pendekatan, Setelah lulus SMA kitapun tidak ada
+                  komunikasi, bahkan hampir tidak mengenal lagi satu sama lain.
+                  Sampai akhirnya pada tahun 2022 mulai lagi ada komunikasi
+                  kembali lewat facebook dan Instagram, tapi ga lama setelah itu
+                  hilang kontak lagi,kembali komunikasi lagi di awal 2023,
+                  memutuskan bertemu untuk pertamakali.
+                </p>
+              </div>
+            </div>
+          </li>
 
-                <!-- Kiri -->
-                <li class="mb-20 sm:mb-10 relative before:table after:table after:clear-both">
-                    <div class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted lg:arrow-story-inverted-lg" style="background-image: url('src/img/story/87535316_p0.png');"></div>
-                    <div class="w-[90%] sm:w-[70%] lg:w-[40%] xl:w-[50%] mx-auto float-none sm:float-right lg:float-left border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white lg:arrow-story sm:right-4 md:right-7 lg:right-auto xl:right-28 text-center sm:text-left">
-                        <div class="mb-2">
-                            <h3 class="font-bold text-base sm:text-xl tracking-widest">Lamaran</h3>
-                            <span class="font-semibold text-sm sm:text-base text-[#666]">3 Maret 2013</span>
-                        </div>
-                        <div>
-                            <p class="font-light text-[#444] text-sm sm:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero suscipit accusantium non consequatur eum, vel illo incidunt voluptas voluptatibus libero quam veniam repellat!</p>
-                        </div>
-                    </div>
-                </li>
+          <!-- Kiri -->
+          <li
+            class="mb-20 sm:mb-10 relative before:table after:table after:clear-both"
+          >
+            <div
+              class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted lg:arrow-story-inverted-lg"
+              style="background-image: url('src/img/story/87535316_p0.png')"
+            ></div>
+            <div
+              class="w-[90%] sm:w-[70%] lg:w-[40%] mx-auto float-none sm:float-right lg:float-left border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white lg:arrow-story sm:right-4 md:right-7 lg:right-auto text-center sm:text-left"
+            >
+              <div class="mb-2">
+                <h3 class="font-bold text-base sm:text-xl tracking-widest">
+                  Lamaran
+                </h3>
+                <span class="font-semibold text-sm sm:text-base text-[#666]"
+                  >3 Maret 2013</span
+                >
+              </div>
+              <div>
+                <p class="font-light text-[#444] text-sm sm:text-base">
+                  kehendak nya menuntun kami pada sebuah pertemuan yang tak
+                  pernah disangka hingga akhirnya membawa kami pada sebuah
+                  ikatan suci yang di cintainya ,kami melangsungkan acara
+                  Lamaran di 16 Juli 2023
+                </p>
+              </div>
+            </div>
+          </li>
 
-                <!-- Kanan -->
-                <li class="mb-10 relative before:table after:table after:clear-both">
-                    <div class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted" style="background-image: url('src/img/story/alena-aenami-night-1k.jpg');"></div>
-                    <div class="w-[90%] sm:w-[70%] lg:w-[40%] xl:w-[50%] mx-auto float-none sm:float-right border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white sm:right-4 md:right-7 lg:right-auto xl:-right-28 text-center sm:text-left">
-                        <div class="mb-2">
-                            <h3 class="font-bold text-base sm:text-xl tracking-widest">Tunangan</h3>
-                            <span class="font-semibold text-sm sm:text-base text-[#666]">4 April 2014</span>
-                        </div>
-                        <div>
-                            <p class="font-light text-[#444] text-sm sm:text-base">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde vero fuga nemo odit repellat, pariatur illum quas sequi. Quas, maiores.</p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+          <!-- Kanan -->
+          <li class="mb-10 relative before:table after:table after:clear-both">
+            <div
+              class="w-40 h-40 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-[#ccc] sm:absolute sm:left-8 md:left-10 lg:left-1/2 top-4 lg:top-0 mx-auto mb-5 sm:mb-0 sm:ml-11 lg:ml-0 rounded-full sm:-translate-x-1/2 bg-cover bg-no-repeat bg-center sm:arrow-story-inverted"
+              style="
+                background-image: url('src/img/story/alena-aenami-night-1k.jpg');
+              "
+            ></div>
+            <div
+              class="w-[90%] sm:w-[70%] lg:w-[40%] mx-auto float-none sm:float-right border border-[#ccc] rounded-lg p-3 sm:p-8 sm:relative bg-white sm:right-4 md:right-7 lg:right-auto text-center sm:text-left"
+            >
+              <div class="mb-2">
+                <h3 class="font-bold text-base sm:text-xl tracking-widest">
+                  Menikah
+                </h3>
+                <span class="font-semibold text-sm sm:text-base text-[#666]"
+                  >4 April 2014</span
+                >
+              </div>
+              <div>
+                <p class="font-light text-[#444] text-sm sm:text-base">
+                  Percayalah bukan karna bertemu lalu berjodoh tapi karna
+                  berjodoh lah maka kami di pertemukan kembali, kami memutuskan
+                  untuk mengikrarkan janji suci pernikahan kami di bulan
+                  Desember ini Insyaalloh sebagai mana yang pernah di katakan
+                  oleh saydina Ali bin abi thalib "Apa yang menjadi takdirmu
+                  akan menemukan jalan nya untuk menemukan mu"
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </section>
     <!-- End Story -->
 
     <!-- Start Gallery -->
     <section id="gallery" class="pt-40 pb-32 bg-[#f5f5f5]">
-        <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
-            <span class="uppercase text-[#666] text-sm tracking-[1px] mb-6 block">Memori Kisah Kami</span>
-            <h2 class="mb-4 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold">Galeri Foto</h2>
-            <p class="text-base font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rem quod earum odit. Dolorem aspernatur, ea quidem necessitatibus fugit velit?</p>
-        </div>
+      <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
+        <span class="uppercase text-[#666] text-sm tracking-[1px] mb-6 block"
+          >Memori Kisah Kami</span
+        >
+        <h2
+          class="mb-4 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold"
+        >
+          Galeri Foto
+        </h2>
+        <p class="text-base font-light">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rem
+          quod earum odit. Dolorem aspernatur, ea quidem necessitatibus fugit
+          velit?
+        </p>
+      </div>
 
-        <div class="grid grid-cols-0 md:grid-cols-4 items-center justify-center gap-2 lg:gap-3 xl:gap-5 px-3 md:px-5 lg:px-10">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_dress" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_ceremony" alt="" class="w-full h-full rounded-lg row-span-0 col-span-0 md:row-span-2 md:col-span-2 hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/720x1280?flower" alt="" class="w-full h-full rounded-lg md:row-span-2 hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_clothes" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_ceremony" alt="" class="w-full h-full rounded-lg row-span-0 col-span-0 md:row-span-2 md:col-span-2 hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_ring" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_party" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_ring" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-            <img src="https://source.unsplash.com/random/1280x720?wedding_party" alt="" class="w-full h-full rounded-lg hover:scale-105 transition">
-        </div>
+      <div
+        class="grid grid-cols-0 md:grid-cols-4 items-center justify-center gap-2 lg:gap-3 xl:gap-5 px-3 md:px-5 lg:px-10"
+      >
+        <img
+          src="https://i.ibb.co.com/7VbGtfh/Whats-App-Image-2024-11-14-at-7-37-39-AM.jpg"
+          alt=""
+          class="w-full h-full rounded-lg hover:scale-105 transition"
+        />
+        <!-- <img src="https://i.ibb.co.com/C51xbNh/Whats-App-Image-2024-11-14-at-7-37-40-AM.jpg" alt="" class="w-full h-full rounded-lg row-span-0 col-span-0 md:row-span-2 md:col-span-2 hover:scale-105 transition"> -->
+        <!-- <img src="https://i.ibb.co.com/3pRjSYf/Whats-App-Image-2024-11-14-at-7-37-40-AM-1.jpg" alt="" class="w-full h-full rounded-lg md:row-span-2 hover:scale-105 transition"> -->
+        <img
+          src="https://i.ibb.co.com/C51xbNh/Whats-App-Image-2024-11-14-at-7-37-40-AM.jpg"
+          alt=""
+          class="w-full h-full rounded-lg hover:scale-105 transition"
+        />
+        <img
+          src="https://i.ibb.co.com/3pRjSYf/Whats-App-Image-2024-11-14-at-7-37-40-AM-1.jpg"
+          alt=""
+          class="w-full h-full rounded-lg row-span-0 col-span-0 md:row-span-2 md:col-span-2 hover:scale-105 transition"
+        />
+        <!-- <img src="https://i.ibb.co.com/7VbGtfh/Whats-App-Image-2024-11-14-at-7-37-39-AM.jpg" alt="" class="w-full h-full rounded-lg hover:scale-105 transition"> -->
+        <!-- <img src="https://i.ibb.co.com/7VbGtfh/Whats-App-Image-2024-11-14-at-7-37-39-AM.jpg" alt="" class="w-full h-full rounded-lg hover:scale-105 transition"> -->
+        <img
+          src="https://i.ibb.co.com/C51xbNh/Whats-App-Image-2024-11-14-at-7-37-40-AM.jpg"
+          alt=""
+          class="w-full h-full rounded-lg hover:scale-105 transition"
+        />
+        <img
+          src="https://i.ibb.co.com/RjBvVcS/Whats-App-Image-2024-11-14-at-7-37-40-AM-2.jpg"
+          alt=""
+          class="w-full h-full rounded-lg hover:scale-105 transition"
+        />
+      </div>
     </section>
     <!-- End Gallery -->
 
     <!-- Start RSVP -->
-    <section id="rsvp" class="bg-bgPrimary text-white pt-32 pb-32">
+    <!-- <section id="rsvp" class="bg-bgPrimary text-white pt-32 pb-32">
         <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
             <h2 class="mb-5 sm:mb-10 text-pinkPrimary font-sacramento text-5xl md:text-6xl lg:text-7xl font-bold">Konfirmasi Kehadiran</h2>
             <p class="text-sm sm:text-base md:text-lg text-white">Isi form di bawah ini untuk melakukan konfirmasi kehadiran.</p>
@@ -325,11 +593,11 @@
                 <button type="submit" class="btn bg-pinkPrimary text-white border-pinkPrimary hover:text-pinkPrimary hover:bg-white hover:border-white">Kirim</button>
             </div>
         </form>
-    </section>
+    </section> -->
     <!-- End RSVP -->
 
     <!-- Start Gifts -->
-    <section id="gifts" class="pt-32 pb-32">
+    <!-- <section id="gifts" class="pt-32 pb-32">
         <div class="flex flex-col justify-center text-center px-2 sm:px-5 mb-5">
             <span class="uppercase text-[#666] text-sm tracking-[1px] mb-6 block">Ungkapan Tanda Kasih</span>
             <h2 class="mb-4 text-pinkPrimary font-sacramento text-5xl sm:text-7xl lg:text-8xl font-bold">Kirim Hadiah</h2>
@@ -366,44 +634,77 @@
                 </table>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Gifts -->
 
     <!-- Start Footer -->
     <footer class="footer footer-center p-10 bg-pinkPrimary text-white rounded">
-        <nav class="grid grid-flow-col gap-4">
-            <a href="#home" class="link link-hover">Home</a>
-            <a href="#info" class="link link-hover">Info</a>
-            <a href="#story" class="link link-hover">Story</a>
-            <a href="#gallery" class="link link-hover">Gallery</a>
-            <a href="#rsvp" class="link link-hover">RSVP</a>
-            <a href="#gifts" class="link link-hover">Gifts</a>
-        </nav> 
-        <nav>
-            <div class="grid grid-flow-col items-center gap-4">
-                <a href="https://www.instagram.com/akbarwp002" class="hover:scale-110 transition"><i class="ri-instagram-line text-3xl"></i></a>
-                <a href="https://www.linkedin.com/in/akbar-wibowo-putra-a81810220" class="hover:scale-110 transition"><i class="ri-linkedin-box-fill text-3xl"></i></a>
-                <a href="https://github.com/Akbarwp" class="hover:scale-110 transition"><i class="ri-github-fill text-3xl"></i></a>
-                <a href="https://www.showwcase.com/akbarwp" class="hover:scale-110 transition">
-                    <svg class="fill-current" width="24" height="24" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M35.64 7.241a67.234 67.234 0 0 1 7.064-.916c.536-.041.909-.13 1.14-.507.39-.634 1.084-.878 2.05-.95 2.6-.194 5.179-.208 7.785-.029 1.257.087 2.095.406 2.577 1.233.19.325.517.445 1.007.48 1.023.072 2.04.182 3.054.317 1.317.176 2.621.399 3.988.623-.236-.795-.603-1.468-1.016-2.129C61.711 2.84 59.18 1.121 55.415.424c-2.829-.523-5.692-.477-8.56-.311-1.795.104-3.508.46-5.107 1.076-3.332 1.28-4.971 3.466-6.109 6.052ZM1.981 9.547a12.25 12.25 0 0 1 3.153 1.76c2.095 1.603 3.537 3.515 4.873 5.472 1.485 2.174 2.654 4.445 3.756 6.746.219-.133.235-.292.282-.446.562-1.82 1.222-3.621 2.067-5.385 1.499-3.125 3.505-6.015 7.157-8.138.367-.213.337-.362.066-.613-1.157-1.072-2.406-2.08-3.863-2.94-1.152-.679-2.476-1.023-3.981-.998-3.304.054-6.31.833-9.16 1.977-1.642.659-3.17 1.43-4.35 2.565ZM45.45 7.29l-.342.05c-.051-.011-.104-.036-.153-.034-4.328.237-8.622.618-12.79 1.552-4.464 1-7.909 2.943-10.303 5.858-1.906 2.322-2.948 4.888-3.898 7.47-.993 2.698-1.683 5.448-2.296 8.204-.99 4.449-1.742 8.922-2.45 13.397a447.73 447.73 0 0 0-1.416 9.807c-.629 4.646-1.188 9.295-1.23 13.97-.039 4.101.087 8.19 1.83 12.149 1.143 2.596 3.11 4.73 6.42 6.152 3.43 1.474 7.184 2.27 11.028 2.869 5.693.887 11.478 1.179 17.284 1.246 6.24.072 12.475-.037 18.666-.692 4.539-.48 8.99-1.21 13.202-2.585 3.829-1.25 6.623-3.198 8.143-6.093 1.51-2.873 2.026-5.87 2.202-8.902.397-6.85-.515-13.656-1.473-20.456-.703-4.991-1.466-9.978-2.389-14.952-.565-3.042-1.164-6.078-1.951-9.093-.915-3.5-2-6.965-3.879-10.273-2.289-4.032-6.139-6.879-11.985-8.1-7.264-1.516-14.7-1.883-22.22-1.544Zm45.755 42.175c.003.397.02.794.16 1.181l.461 3.191c-.066.202-.033.392.1.65.108-.268.344-.42.27-.644l1.4-4.995c.097-.184.189-.368.138-.57.271-.456.333-.95.5-1.425 1.016-2.877 1.708-5.8 2.36-8.728.718-3.222 1.337-6.457 2.134-9.669.98-3.95 1.42-7.92 1.23-11.925-.071-1.482-.168-2.973-.716-4.513-.457.259-.857.453-1.206.688-1.61 1.087-2.752 2.428-3.775 3.816-2.914 3.953-4.805 8.195-6.571 12.47-.09.217-.038.424.013.639.914 3.878 1.578 7.78 2.206 11.686.437 2.716.864 5.432 1.296 8.148ZM.279 13.058c-.292.848-.277 1.715-.279 2.579-.01 3.925.578 7.814 1.284 11.7.613 3.377 1.465 6.721 2.295 10.069a465.6 465.6 0 0 0 2.498 9.73c.834 3.079 1.135 6.197 1.452 9.316.023.228-.03.473.188.7.042-.064.096-.11.102-.16a374.246 374.246 0 0 1 1.956-13.677c.718-4.433 1.403-8.868 2.415-13.272.133-.575.297-1.137-.002-1.74-.584-1.182-1.025-2.4-1.587-3.588-1.487-3.142-3.07-6.259-5.444-9.12-.961-1.16-1.956-2.314-3.495-3.14-.35-.218-.73-.605-1.147-.469-.347.114-.221.589-.288.906-.01.052.033.11.052.166Zm92.7-6.237a29.925 29.925 0 0 0-10.118-1.67 5.212 5.212 0 0 0-2.807.825c-1.426.913-2.417 2.057-3.266 3.277-.174.25.013.351.233.483a15.27 15.27 0 0 1 2.692 2.039c2.817 2.682 4.257 5.803 5.445 9.003.362.976.685 1.959 1.068 3.06 1.164-2.394 2.288-4.667 3.762-6.834 1.792-2.635 3.72-5.205 7.08-7.008l.436-.202.378-.152c.35-.092.138-.185 0-.278-.069-.2-.25-.34-.466-.463-.178-.247-.463-.413-.79-.548-.73-.497-1.58-.86-2.482-1.164-.373-.148-.714-.35-1.165-.368Z"></path></svg>
-                </a>
-            </div>
-        </nav> 
-        <aside>
-            <p>2023 © All Rights Reserverd. Build with <span class="text-black">❤</span> by <a href="https://github.com/Akbarwp" target="_blank" class="link link-hover font-semibold">AkbarWP</a></p>
-        </aside>
+      <nav class="grid grid-flow-col gap-4">
+        <a href="#home" class="link link-hover">Home</a>
+        <a href="#info" class="link link-hover">Info</a>
+        <a href="#story" class="link link-hover">Story</a>
+        <a href="#gallery" class="link link-hover">Gallery</a>
+        <!-- <a href="#rsvp" class="link link-hover">RSVP</a>
+            <a href="#gifts" class="link link-hover">Gifts</a> -->
+      </nav>
+      <nav>
+        <div class="grid grid-flow-col items-center gap-4">
+          <a href="/" class="hover:scale-110 transition"
+            ><i class="ri-instagram-line text-3xl"></i
+          ></a>
+          <a href="/" class="hover:scale-110 transition"
+            ><i class="ri-linkedin-box-fill text-3xl"></i
+          ></a>
+          <a href="/" class="hover:scale-110 transition"
+            ><i class="ri-github-fill text-3xl"></i
+          ></a>
+          <a href="/" class="hover:scale-110 transition">
+            <svg
+              class="fill-current"
+              width="24"
+              height="24"
+              viewBox="0 0 100 90"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M35.64 7.241a67.234 67.234 0 0 1 7.064-.916c.536-.041.909-.13 1.14-.507.39-.634 1.084-.878 2.05-.95 2.6-.194 5.179-.208 7.785-.029 1.257.087 2.095.406 2.577 1.233.19.325.517.445 1.007.48 1.023.072 2.04.182 3.054.317 1.317.176 2.621.399 3.988.623-.236-.795-.603-1.468-1.016-2.129C61.711 2.84 59.18 1.121 55.415.424c-2.829-.523-5.692-.477-8.56-.311-1.795.104-3.508.46-5.107 1.076-3.332 1.28-4.971 3.466-6.109 6.052ZM1.981 9.547a12.25 12.25 0 0 1 3.153 1.76c2.095 1.603 3.537 3.515 4.873 5.472 1.485 2.174 2.654 4.445 3.756 6.746.219-.133.235-.292.282-.446.562-1.82 1.222-3.621 2.067-5.385 1.499-3.125 3.505-6.015 7.157-8.138.367-.213.337-.362.066-.613-1.157-1.072-2.406-2.08-3.863-2.94-1.152-.679-2.476-1.023-3.981-.998-3.304.054-6.31.833-9.16 1.977-1.642.659-3.17 1.43-4.35 2.565ZM45.45 7.29l-.342.05c-.051-.011-.104-.036-.153-.034-4.328.237-8.622.618-12.79 1.552-4.464 1-7.909 2.943-10.303 5.858-1.906 2.322-2.948 4.888-3.898 7.47-.993 2.698-1.683 5.448-2.296 8.204-.99 4.449-1.742 8.922-2.45 13.397a447.73 447.73 0 0 0-1.416 9.807c-.629 4.646-1.188 9.295-1.23 13.97-.039 4.101.087 8.19 1.83 12.149 1.143 2.596 3.11 4.73 6.42 6.152 3.43 1.474 7.184 2.27 11.028 2.869 5.693.887 11.478 1.179 17.284 1.246 6.24.072 12.475-.037 18.666-.692 4.539-.48 8.99-1.21 13.202-2.585 3.829-1.25 6.623-3.198 8.143-6.093 1.51-2.873 2.026-5.87 2.202-8.902.397-6.85-.515-13.656-1.473-20.456-.703-4.991-1.466-9.978-2.389-14.952-.565-3.042-1.164-6.078-1.951-9.093-.915-3.5-2-6.965-3.879-10.273-2.289-4.032-6.139-6.879-11.985-8.1-7.264-1.516-14.7-1.883-22.22-1.544Zm45.755 42.175c.003.397.02.794.16 1.181l.461 3.191c-.066.202-.033.392.1.65.108-.268.344-.42.27-.644l1.4-4.995c.097-.184.189-.368.138-.57.271-.456.333-.95.5-1.425 1.016-2.877 1.708-5.8 2.36-8.728.718-3.222 1.337-6.457 2.134-9.669.98-3.95 1.42-7.92 1.23-11.925-.071-1.482-.168-2.973-.716-4.513-.457.259-.857.453-1.206.688-1.61 1.087-2.752 2.428-3.775 3.816-2.914 3.953-4.805 8.195-6.571 12.47-.09.217-.038.424.013.639.914 3.878 1.578 7.78 2.206 11.686.437 2.716.864 5.432 1.296 8.148ZM.279 13.058c-.292.848-.277 1.715-.279 2.579-.01 3.925.578 7.814 1.284 11.7.613 3.377 1.465 6.721 2.295 10.069a465.6 465.6 0 0 0 2.498 9.73c.834 3.079 1.135 6.197 1.452 9.316.023.228-.03.473.188.7.042-.064.096-.11.102-.16a374.246 374.246 0 0 1 1.956-13.677c.718-4.433 1.403-8.868 2.415-13.272.133-.575.297-1.137-.002-1.74-.584-1.182-1.025-2.4-1.587-3.588-1.487-3.142-3.07-6.259-5.444-9.12-.961-1.16-1.956-2.314-3.495-3.14-.35-.218-.73-.605-1.147-.469-.347.114-.221.589-.288.906-.01.052.033.11.052.166Zm92.7-6.237a29.925 29.925 0 0 0-10.118-1.67 5.212 5.212 0 0 0-2.807.825c-1.426.913-2.417 2.057-3.266 3.277-.174.25.013.351.233.483a15.27 15.27 0 0 1 2.692 2.039c2.817 2.682 4.257 5.803 5.445 9.003.362.976.685 1.959 1.068 3.06 1.164-2.394 2.288-4.667 3.762-6.834 1.792-2.635 3.72-5.205 7.08-7.008l.436-.202.378-.152c.35-.092.138-.185 0-.278-.069-.2-.25-.34-.466-.463-.178-.247-.463-.413-.79-.548-.73-.497-1.58-.86-2.482-1.164-.373-.148-.714-.35-1.165-.368Z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </nav>
+      <aside>
+        <p>
+          2023 © All Rights Reserverd. Build with
+          <span class="text-black">❤</span> by
+          <a
+            href="https://github.com/Akbarwp"
+            target="_blank"
+            class="link link-hover font-semibold"
+            >AkbarWP</a
+          >
+        </p>
+      </aside>
     </footer>
     <!-- End Footer -->
 
     <!-- Start Audio Player -->
     <div id="audio-container">
-        <audio id="bgm" loop>
-            <source src="src/audio/Boom Bap Flick - Quincas Moreira.mp3" type="audio/mp3">
-        </audio>
+      <audio id="bgm" loop>
+        <source
+          src="src/audio/Boom Bap Flick - Quincas Moreira.mp3"
+          type="audio/mp3"
+        />
+      </audio>
 
-        <div id="icon-wrapper" class="w-16 h-16 text-6xl fixed bottom-10 right-8 cursor-pointer text-white opacity-50 mix-blend-difference animate-spin-slow origin-center justify-center items-center leading-[0] hidden">
-            <i class="ri-disc-line"></i>
-        </div>
+      <div
+        id="icon-wrapper"
+        class="w-16 h-16 text-6xl fixed bottom-10 right-8 cursor-pointer text-white opacity-50 mix-blend-difference animate-spin-slow origin-center justify-center items-center leading-[0] hidden"
+      >
+        <i class="ri-disc-line"></i>
+      </div>
     </div>
     <!-- End Audio Player -->
 
@@ -414,141 +715,146 @@
 
     <!-- Script Countdown -->
     <script>
-        simplyCountdown('.simply-countdown', {
-            year: 2024, // required
-            month: 1, // required
-            day: 1, // required
-            hours: 8, // Default is 0 [0-23] integer
-            words: { //words displayed into the countdown
-                days: { singular: 'hari', plural: 'hari' },
-                hours: { singular: 'jam', plural: 'jam' },
-                minutes: { singular: 'menit', plural: 'menit' },
-                seconds: { singular: 'detik', plural: 'detik' }
-            },
-        });
+      simplyCountdown(".simply-countdown", {
+        year: 2024, // required
+        month: 1, // required
+        day: 1, // required
+        hours: 8, // Default is 0 [0-23] integer
+        words: {
+          //words displayed into the countdown
+          days: { singular: "hari", plural: "hari" },
+          hours: { singular: "jam", plural: "jam" },
+          minutes: { singular: "menit", plural: "menit" },
+          seconds: { singular: "detik", plural: "detik" },
+        },
+      });
     </script>
 
     <!-- Script lock scroll & audio -->
     <script>
-        const rootElement = document.querySelector("html");
-        const scrollbar = document.querySelector("body");
-        const song = document.querySelector('#bgm');
-        const iconWrapper = document.querySelector('#icon-wrapper');
-        const iconAudio = document.querySelector('#icon-wrapper i');
-        let isPlaying = false;
-        function disableScroll() {
-            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+      const rootElement = document.querySelector("html");
+      const scrollbar = document.querySelector("body");
+      const song = document.querySelector("#bgm");
+      const iconWrapper = document.querySelector("#icon-wrapper");
+      const iconAudio = document.querySelector("#icon-wrapper i");
+      let isPlaying = false;
+      function disableScroll() {
+        scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
-            window.onscroll = function() {
-                window.scrollTo(scrollTop, scrollLeft);
-            }
-            rootElement.classList.remove("scroll-smooth")
-            rootElement.classList.add("auto")
+        window.onscroll = function () {
+          window.scrollTo(scrollTop, scrollLeft);
+        };
+        rootElement.classList.remove("scroll-smooth");
+        rootElement.classList.add("auto");
 
-            scrollbar.classList.remove("scrollbarStyle")
-            scrollbar.classList.add("scrollbar-none")
+        scrollbar.classList.remove("scrollbarStyle");
+        scrollbar.classList.add("scrollbar-none");
+      }
+
+      function enableScroll() {
+        window.onscroll = function () {};
+        rootElement.classList.remove("auto");
+        rootElement.classList.add("scroll-smooth");
+
+        scrollbar.classList.remove("scrollbar-none");
+        scrollbar.classList.add("scrollbarStyle");
+
+        // localStorage.setItem('opened', 'true');
+
+        playAudio();
+      }
+
+      function playAudio() {
+        song.volume = 0.2;
+        song.play();
+        isPlaying = true;
+
+        iconWrapper.classList.remove("hidden");
+        iconWrapper.classList.add("flex");
+      }
+
+      iconWrapper.onclick = function () {
+        if (isPlaying) {
+          song.pause();
+          iconAudio.classList.remove("ri-disc-line");
+          iconAudio.classList.add("ri-pause-circle-line");
+        } else {
+          song.play();
+          iconAudio.classList.remove("ri-pause-circle-line");
+          iconAudio.classList.add("ri-disc-line");
         }
+        isPlaying = !isPlaying;
+      };
 
-        function enableScroll() {
-            window.onscroll = function() {}
-            rootElement.classList.remove("auto")
-            rootElement.classList.add("scroll-smooth")
-
-            scrollbar.classList.remove("scrollbar-none")
-            scrollbar.classList.add("scrollbarStyle")
-
-            // localStorage.setItem('opened', 'true');
-
-            playAudio();
-        }
-
-        function playAudio() {
-            song.volume = 0.2;
-            song.play();
-            isPlaying = true;
-
-            iconWrapper.classList.remove('hidden');
-            iconWrapper.classList.add('flex');
-        }
-
-        iconWrapper.onclick = function() {
-            if (isPlaying) {
-                song.pause();
-                iconAudio.classList.remove('ri-disc-line');
-                iconAudio.classList.add('ri-pause-circle-line');
-
-            } else {
-                song.play();
-                iconAudio.classList.remove('ri-pause-circle-line');
-                iconAudio.classList.add('ri-disc-line');
-            }
-            isPlaying = !isPlaying;
-        }
-
-        // if (!localStorage.getItem('opened')) {
-        //     disableScroll();
-        // }
-        disableScroll();
+      // if (!localStorage.getItem('opened')) {
+      //     disableScroll();
+      // }
+      disableScroll();
     </script>
 
     <!-- Script redirect form -->
     <script>
-        window.addEventListener("load", function() {
-            const form = document.getElementById('my-form');
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
-                const data = new FormData(form);
-                const action = e.target.action;
-                fetch(action, {
-                    method: 'POST',
-                    body: data,
-                })
-                .then(() => {
-                    // alert("Konfirmasi kehadiran berhasil terkirim!");
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Konfirmasi',
-                        text: 'Konfirmasi kehadiran berhasil terkirim!',
-                    })
-                })
+      window.addEventListener("load", function () {
+        const form = document.getElementById("my-form");
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const data = new FormData(form);
+          const action = e.target.action;
+          fetch(action, {
+            method: "POST",
+            body: data,
+          }).then(() => {
+            // alert("Konfirmasi kehadiran berhasil terkirim!");
+            Swal.fire({
+              icon: "success",
+              title: "Konfirmasi",
+              text: "Konfirmasi kehadiran berhasil terkirim!",
             });
+          });
         });
+      });
     </script>
 
     <!-- LeafletJS -->
     <script>
-        // LeafletJS Map
-        let map = L.map('map', { zoomControl: false }).setView([-7.3770262, 112.7413162], 20);
-        L.tileLayer('https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}.png?key=ymJjhfOMl9vKscg4Yzu7', {
-            attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-        }).addTo(map);
+      // LeafletJS Map
+      let map = L.map("map", { zoomControl: false }).setView(
+        [-7.3770262, 112.7413162],
+        20
+      );
+      L.tileLayer(
+        "https://api.maptiler.com/maps/bright-v2/{z}/{x}/{y}.png?key=ymJjhfOMl9vKscg4Yzu7",
+        {
+          attribution:
+            '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+        }
+      ).addTo(map);
 
-        // map.touchZoom.disable();
-        // map.doubleClickZoom.disable();
-        // map.scrollWheelZoom.disable();
-        // map.boxZoom.disable();
-        map.keyboard.disable();
+      // map.touchZoom.disable();
+      // map.doubleClickZoom.disable();
+      // map.scrollWheelZoom.disable();
+      // map.boxZoom.disable();
+      map.keyboard.disable();
 
-        let popup = L.popup({
-                closeOnClick: false,
-                autoClose: false,
-                closeButton: false
-            })
-            .setLatLng([-7.3770262, 112.7413162])
-            .setContent("GOR Soerokromo | Gedung Serba Guna")
-            .openOn(map)
+      let popup = L.popup({
+        closeOnClick: false,
+        autoClose: false,
+        closeButton: false,
+      })
+        .setLatLng([-7.3770262, 112.7413162])
+        .setContent("GOR Soerokromo | Gedung Serba Guna")
+        .openOn(map);
     </script>
 
     <!-- Script URL -->
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const nama = urlParams.get('n') || "";
-        const pronoun = urlParams.get('p') || "Bapak/Ibu/Saudara/i";
-        const namaSection = document.querySelector('#hero div h4 span');
-        namaSection.innerText = `${pronoun} ${nama},` . replace(/ ,$/, ',');
-        document.querySelector('#nama').value = nama;
+      const urlParams = new URLSearchParams(window.location.search);
+      const nama = urlParams.get("n") || "";
+      const pronoun = urlParams.get("p") || "Bapak/Ibu/Saudara/i";
+      const namaSection = document.querySelector("#hero div h4 span");
+      namaSection.innerText = `${pronoun} ${nama},`.replace(/ ,$/, ",");
+      document.querySelector("#nama").value = nama;
     </script>
-</body>
-
+  </body>
 </html>
