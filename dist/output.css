@@ -2727,7 +2727,7 @@ html {
 }
 
 .font-sacramento {
-  font-family: Sacramento;
+  font-family: "Style Script", cursive;
 }
 
 .font-workSans {
@@ -2827,8 +2827,9 @@ html {
 
 .text-pinkPrimary {
   --tw-text-opacity: 1;
-  color: rgb(241 78 149 / var(--tw-text-opacity));
+  color: rgb(2 132 199 / var(--tw-text-opacity));
 }
+
 
 .text-slate-50 {
   --tw-text-opacity: 1;

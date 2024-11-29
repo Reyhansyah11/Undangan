@@ -4,11 +4,11 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sacramento: ["Sacramento"],
+                sacramento: ["Style Script"],
                 workSans: ["Work Sans"],
             },
             colors: {
-                pinkPrimary: "#F14E95",
+                pinkPrimary: "#0284c7",
                 bgPrimary: "#0A0A0A",
             },
             screens: {
